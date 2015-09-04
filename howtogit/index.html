@@ -30,7 +30,11 @@
         <p>
             create a new directory, open it and perform a <br />
             <code>git init</code><br />
-            to create a new git repository.
+            to create a new git repository. <br /><br />
+            You can connect to your created repository through the url on github <br />
+            <code> git remote add origin /path/to/repository</code><br />
+            add do an initial pull<br /> 
+            <code> git pull origin master </code>
         </p>
     </div>
     <a name="checkout"></a>
@@ -60,7 +64,8 @@
         <p>
             You can propose changes (add it to the <b>Index</b>) using<br />
             <code>git add &lt;filename&gt;</code><br />
-            <code>git add *</code><br />
+            <code>git add --all</code><br />
+            <code>git add -A</code><br />
             This is the first step in the basic git workflow. To actually commit these changes use<br />
             <code>git commit -m "Commit message"</code><br />
             Now the file is committed to the <b>HEAD</b>, but not in your remote repository yet.
@@ -71,7 +76,9 @@
         <h2>pushing changes</h2>
         <p>
             Your changes are now in the <b>HEAD</b> of your local working copy. To send those changes to your remote repository, execute <br />
-            <code>git push origin master</code><br />
+            <code>git push -u origin master</code><br />
+            or for a branch<br />
+            <code>git push -u origin feature_x</code><br />
             Change <i>master</i> to whatever branch you want to push your changes to.
             <br /><br />
             If you have not cloned an existing repository and want to connect your repository to a remote server, you need to add it with<br />
@@ -90,12 +97,15 @@
         <p>
             create a new branch named "feature_x" and switch to it using<br />
             <code>git checkout -b feature_x</code><br />
+            this is short for:
+            <code>git branch feature_x</code><br />
+            <code>git checkout feature_x</code><br />
             switch back to master<br />
             <code>git checkout master</code><br />
             and delete the branch again<br />
             <code>git branch -d feature_x</code><br />
             a branch is <i>not available to others</i> unless you push the branch to your remote repository<br />
-            <code>git push origin &lt;branch&gt;</code>
+            <code>git push -u origin &lt;branch&gt;</code>
         </p>
     </div>
     <a name="update"></a>
@@ -104,6 +114,8 @@
         <p>
             to update your local repository to the newest commit, execute <br />
             <code>git pull</code><br />
+            or from a branch<br />
+            <code>git pull -u origin feature_x</code><br />
             in your working directory to <i>fetch</i> and <i>merge</i> remote changes.<br />
             to merge another branch into your active branch (e.g. master), use<br />
             <code>git merge &lt;branch&gt;</code><br />
@@ -170,6 +182,51 @@
             <code>git add -i</code>
         </p>
     </div>
+     <div class="scrollblock block-trees">
+        <h2>3 basic ways to use git</h2>
+        <p>
+            there is no "right" way to use git, but there are 3 main approaches
+            <code>Centralized Workflow</code> features a single history<br />
+            <code>Feature Branch Workflow</code> features always get their own branch <br />
+            <code>Gitflow Workflow</code> strict branching designed around project release<br />
+            <img src="img/01.svg" alt="" height="500" width="800"/>
+        </p>
+    </div>
+    <div class="scrollblock block-log">
+        <h2>Centralized Workflow</h2>
+        <p>
+            Like Subversion, the Centralized Workflow uses a central repository to serve as the single point-of-entry for all changes to the project. Before the developer can publish their feature, they need to fetch the updated central commits and rebase their changes on top of them.<br \> 
+            <code>git pull --rebase origin master</code><br />
+
+            <img src="img/11.svg" alt="" height="500" width="800"/><br />
+            <code>CONFLICT (content): Merge conflict in &lt;filename&gt; </code><br />
+            If a conflict occurs Then, you can edit the file(s) to your liking. Once your happy with the result, you can stage the file(s) in the usual fashion and let git rebase do the rest:<br />
+            <code>git add &lt;filename&gt; </code><br />
+            <code>git rebase --continue </code><br />
+            <img src="img/13.svg" alt="" height="500" width="800"/><br />
+            If you get to this point and realize and you have no idea what’s going on, don’t panic. Just execute the following command and you’ll be right back to where you started<br />
+            <code>git rebase --abort</code>
+        </p>
+    </div>
+    <div class="scrollblock block-merging">
+        <h2>Feature Branch Workflow</h2>
+        <img src="img/201.svg" alt="" height="300" width="800"/><br />
+        <p>
+            The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the master branch. This encapsulation makes it easy for multiple developers to work on a particular feature without disturbing the main codebase. Instead of committing directly on their local master branch, developers create a new branch every time they start work on a new feature. Feature branches should have descriptive names, like <code>scrollview-menu-items</code> or <code>issue-#1061</code>. The idea is to give a clear, highly-focused purpose to each branch.<br />
+        </p>
+        <p>
+            When you want to work on a new feature or fix a bug you make a new branch<br />
+            <code>git checkout -b montes-feature master</code><br />
+        </p>
+        <p>
+            when you are done with your feature, and are ready to push it to master you can merge by using<br />
+            <code>git checkout master</code><br />
+            <code>git pull</code><br />
+            <code>git pull origin montes-feature</code><br />
+            <code>git push</code><br />
+        </p>
+    </div>
+   
     <a name="resources"></a>
     <div class="scrollblock block-resources">
         <h2>links & resources</h2>
@@ -193,32 +250,5 @@
                 <li><a href="http://marklodato.github.com/visual-git-guide/index-en.html">A Visual Git Guide</a></li>
             </ul>
         </p>
-        <h3>get help</h3>
-        <p>
-            <ul>
-                <li><a href="http://groups.google.com/group/git-users/">Git User Mailing List</a></li>
-                <li><a href="http://jk.gs/git/">#git on irc.freenode.net</a></li>
-            </ul>
-        </p>
-    </div>
-    <a name="comments"></a>
-    <div class="scrollblock block-comments">
-        <h2>comments</h2>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'git-the-simple-guide'; // required: replace example with your forum shortname
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-    <a href="http://www.git-tower.com/?source=rd" onClick="recordOutboundLink(this, 'Outbound Links', 'git-tower.com');return false;" class="tower"></a>
-    <a href="files/git_cheat_sheet.pdf" onClick="recordOutboundLink(this, 'Cheat Sheet', 'git-guide');return false;" class="cheatsheet"></a>
 </body>
 </html>
