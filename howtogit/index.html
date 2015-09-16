@@ -248,11 +248,14 @@
         <p>
             The Gitflow Workflow defines a strict branching model designed around the project release. While somewhat more complicated than the Feature Branch Workflow, this provides a robust framework for managing larger projects. This workflow doesn’t add any new concepts or commands beyond what’s required for the Feature Branch Workflow. Instead, it assigns very specific roles to different branches and defines how and when they should interact. In addition to feature branches, it uses individual branches for preparing, maintaining, and recording releases.
         </p>
-        <img src="img/303.svg" alt="" height="300" width="800"/><br />
+        <img src="img/303.svg" alt="" height="400" width="800"/><br />
+        <p>
+            Each new feature should reside in its own branch, which can be pushed to the central repository for backup/collaboration. But, instead of branching off of master, feature branches use develop as their parent branch. 
+        </p>
         <p>
             Note that feature branches combined with the develop branch is, for all intents and purposes, the Feature Branch Workflow. But, the Gitflow Workflow doesn’t stop there.
         </p>
-        <img src="img/305.svg" alt="" height="300" width="800"/><br />
+        <img src="img/05.svg" alt="" height="400" width="800"/><br />
         <p>
             Maintenance or “hotfix” branches are used to quickly patch production releases. This is the only branch that should fork directly off of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.
         </p>
