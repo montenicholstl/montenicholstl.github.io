@@ -221,6 +221,7 @@
         <p>
             Aside from isolating feature development, branches make it possible to discuss changes via <code>pull requests.</code> Once someone completes a feature, they don’t immediately merge it into <code>master</code>. Instead, they push the feature branch to the central server and file a pull request asking to merge their additions into <code>master</code>. This gives other developers an opportunity to review the changes before they become a part of the main codebase.
         </p>
+        <img src="img/07.svg" alt="" height="300" width="800"/><br />
         <p>
             Once a pull request is accepted and you are ready to push it to master you can merge by checking out master<br />
             <code>git checkout master</code><br />
@@ -243,6 +244,18 @@
     </div>
     <div class="scrollblock block-checkout-replace">
         <h2>GitFlow Workflow</h2>
+        <img src="img/301.svg" alt="" height="300" width="800"/><br />
+        <p>
+            The Gitflow Workflow defines a strict branching model designed around the project release. While somewhat more complicated than the Feature Branch Workflow, this provides a robust framework for managing larger projects. This workflow doesn’t add any new concepts or commands beyond what’s required for the Feature Branch Workflow. Instead, it assigns very specific roles to different branches and defines how and when they should interact. In addition to feature branches, it uses individual branches for preparing, maintaining, and recording releases.
+        </p>
+        <img src="img/303.svg" alt="" height="300" width="800"/><br />
+        <p>
+            Note that feature branches combined with the develop branch is, for all intents and purposes, the Feature Branch Workflow. But, the Gitflow Workflow doesn’t stop there.
+        </p>
+        <img src="img/305.svg" alt="" height="300" width="800"/><br />
+        <p>
+            Maintenance or “hotfix” branches are used to quickly patch production releases. This is the only branch that should fork directly off of master. As soon as the fix is complete, it should be merged into both master and develop (or the current release branch), and master should be tagged with an updated version number.
+        </p>
         <p>
             more to come...
         </p>
