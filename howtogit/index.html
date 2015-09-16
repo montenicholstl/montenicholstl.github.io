@@ -219,11 +219,23 @@
             <code>git checkout -b montes-feature master</code><br />
         </p>
         <p>
-            when you are done with your feature, and are ready to push it to master you can merge by using<br />
+            Aside from isolating feature development, branches make it possible to discuss changes via <code>pull requests.</code> Once someone completes a feature, they don’t immediately merge it into <code>master</code>. Instead, they push the feature branch to the central server and file a pull request asking to merge their additions into <code>master</code>. This gives other developers an opportunity to review the changes before they become a part of the main codebase.
+        </p>
+        <p>
+            Once a pull request is accepted and you are ready to push it to master you can merge by checking out master<br />
             <code>git checkout master</code><br />
+            do a pull to get the latest version<br />
             <code>git pull</code><br />
-            <code>git pull origin montes-feature</code><br />
+            merge in your feature by pulling the feature-branch<br />
+            <code>git pull -u origin montes-feature</code><br />
+            You could also use a simple <code>git merge montes-feature</code>, but the command shown above makes sure you’re always pulling the most up-to-date version of the feature branch<br />
             <code>git push</code><br />
+            and you now have merged in the feature. If that feature is done and that branch wont be needed again you can clean up by deleting the branch. You can delete a local branch by running<br />
+            <code>git branch -d feature-x</code><br />
+            or a remote branch by running<br />
+            <code>git push origin --delete feature-x</code><br />
+            or, the less verbose but harder to remember<br />
+            <code>git push origin :feature-x</code><br />
         </p>
         <p>
             more to come...
