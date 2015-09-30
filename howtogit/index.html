@@ -33,7 +33,7 @@
             to create a new git repository. <br /><br />
             You can connect to your created repository through the url on github <br />
             <code> git remote add origin /path/to/repository</code><br />
-            add do an initial pull<br /> 
+            and do an initial pull<br /> 
             <code> git pull origin master </code>
         </p>
     </div>
@@ -78,14 +78,9 @@
             Your changes are now in the <b>HEAD</b> of your local working copy. To send those changes to your remote repository, execute <br />
             <code>git push -u origin master</code><br />
             or for a branch<br />
-            <code>git push -u origin feature_x</code><br />
-            Change <i>master</i> to whatever branch you want to push your changes to.
-            <br /><br />
-            If you have not cloned an existing repository and want to connect your repository to a remote server, you need to add it with<br />
-            <code>git remote add origin &lt;server&gt;</code><br />
-            Now you are able to push your changes to the selected remote server<br />
-
-        </p>
+            <code>git push -u origin feature-x</code><br />
+            Change <i>master</i> to whatever branch you want to push your changes to. The <code>-u</code> flag basically means "set this up for the first time." After setting up the tracking branch, you can call <code>git push</code> without any parameters to push your feature.
+         </p>
     </div>
     <a name="branching"></a>
     <div class="scrollblock block-branching">
@@ -95,17 +90,19 @@
         </p>
         <img src="img/branches.png" alt="" />
         <p>
-            create a new branch named "feature_x" and switch to it using<br />
-            <code>git checkout -b feature_x</code><br />
-            this is short for:
-            <code>git branch feature_x</code><br />
-            <code>git checkout feature_x</code><br />
-            switch back to master<br />
+            create a new branch named "feature-x" and switch to it using<br />
+            <code>git checkout -b feature-x</code><br />
+            this is short for:<br />
+            <code>git branch feature-x</code><br />
+            <code>git checkout feature-x</code><br /><br />
+            you can always switch back to master<br />
             <code>git checkout master</code><br />
-            and delete the branch again<br />
-            <code>git branch -d feature_x</code><br />
+            and delete the branch if you don't need it<br />
+            <code>git branch -d feature-x</code><br />
             a branch is <i>not available to others</i> unless you push the branch to your remote repository<br />
-            <code>git push -u origin &lt;branch&gt;</code>
+            <code>git push -u origin feature-x</code><br />
+            if you want to remove a branch from the remote you can either do it at github, or run
+            <code>git branch push :feature-x</code>
         </p>
     </div>
     <a name="update"></a>
@@ -114,11 +111,8 @@
         <p>
             to update your local repository to the newest commit, execute <br />
             <code>git pull</code><br />
-            or from a branch<br />
-            <code>git pull -u origin feature_x</code><br />
-            in your working directory to <i>fetch</i> and <i>merge</i> remote changes.<br />
             to merge another branch into your active branch (e.g. master), use<br />
-            <code>git merge &lt;branch&gt;</code><br />
+            <code>git pull origin feature-x</code><br />
             in both cases git tries to auto-merge changes. Unfortunately, this is not always possible and results in <i>conflicts</i>.
             You are responsible to merge those <i>conflicts</i>
             manually by editing the files shown by git. After changing, you need to mark them as merged with<br />
@@ -163,9 +157,8 @@
             this replaces the changes in your working tree with the last content in HEAD. Changes already added to the index, as well as new files, will be kept.
         </p>
         <p>
-            If you instead want to drop all your local changes and commits, fetch the latest history from the server and point your local master branch at it like this<br />
-            <code>git fetch origin</code><br />
-            <code>git reset --hard origin/master</code>
+            If you instead want to drop all your local changes and commits, you can reset everything to your last commit by running
+            <code>git reset --hard HEAD</code>
         </p>
     </div>
     <a name="hints"></a>
@@ -228,7 +221,7 @@
             do a pull to get the latest version<br />
             <code>git pull</code><br />
             merge in your feature by pulling the feature-branch<br />
-            <code>git pull -u origin montes-feature</code><br />
+            <code>git pull origin montes-feature</code><br />
             You could also use a simple <code>git merge montes-feature</code>, but the command shown above makes sure you’re always pulling the most up-to-date version of the feature branch<br />
             <code>git push</code><br />
             and you now have merged in the feature. If that feature is done and that branch wont be needed again you can clean up by deleting the branch. You can delete a local branch by running<br />
