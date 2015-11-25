@@ -1,1 +1,1 @@
-alert(document.URL);
+(function() { alert(document.URL); })();
