@@ -1,1 +1,21 @@
-"Hello World" 
+"Hello World"
+<script>
+  (function() {
+	function enginioRequest(verb, url, data) {
+        data = typeof data !== 'undefined' ?  data : {};
+        var request = new XMLHttpRequest();
+        request.open(verb, url);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.setRequestHeader('Accept', 'application/json');
+        request.send(JSON.stringify(data));
+        return request;
+    }
+    var getAuthor = enginioRequest('GET', 'https://api.engin.io/v1/objects/authors?q={"trueName":"1"}');
+    getAuthor.onreadystatechange = function() {
+    	if(getAuthor.readyState === XMLHttpRequest.DONE ) {
+        	alert(getAuthor.responseText.toString());
+        }
+    }
+
+})();
+</script>
