@@ -1,6 +1,6 @@
 "Hello World"
 <script>
   (function() {
- 	alert((document.URL));
+ 	alert( document.URL.split('?')[1].split('=')[1] );
 })();
 </script>
